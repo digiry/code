@@ -7,7 +7,7 @@ class OutOfStock(Exception):
     pass
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class OrderLine:
     orderid: str
     sku: str
@@ -58,6 +58,9 @@ class Batch:
         if other.eta == None:
             return True
         return self.eta > other.eta
+
+    def __repr__(self) -> str:
+        return f"<Batch {self.reference}>"
 
 
 def allocate(line: OrderLine, batches: List[Batch]) -> str:
