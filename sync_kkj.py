@@ -18,33 +18,65 @@ def hash_file(path):
     return hasher.hexdigest()
 
 
+def determine_actions(src_hashes, dst_hashes, src_folder, dst_folder):
+    for sha, filename in src_hashes.items():
+        if sha not in dst_hashes:
+            sourcepath = Path(src_folder) / filename
+            destpath = Path(dst_folder) / filename
+            yield "copy", sourcepath, destpath
+
+        elif dst_hashes[sha] != filename:
+            olddestpath = Path(dst_folder) / dst_hashes[sha]
+            newdestpath = Path(dst_folder) / filename
+            yield "move", olddestpath, newdestpath
+
+    for sha, filename in dst_hashes.items():
+        if sha not in src_hashes:
+            yield "delete", dst_folder / filename
+
+
 def sync(source, dest):
-    # 원본 폴더의 자식들을 순회하면서 파일 이름과 해시의 사전을 만든다.
-    source_hashes = {}
-    for folder, _, files in os.walk(source):
+    # 명령형 셸 1단계: 입력 수집
+    source_hashes = read_paths_and_hashes(source)
+    dest_hashes = read_paths_and_hashes(dest)
+
+    # 명령형 셸 2단계: 함수형 핵 호출
+    actions = determine_actions(source_hashes, dest_hashes, source, dest)
+
+    # 명령형 셸 3단계: 출력 적용
+    for action, *paths in actions:
+        if action == "copy":
+            shutil.copyfile(*paths)
+        if action == "move":
+            shutil.move(*paths)
+        if action == "delete":
+            os.remove(paths[0])
+
+
+def read_paths_and_hashes(root):
+    hashes = {}
+    for folder, _, files in os.walk(root):
         for fn in files:
-            source_hashes[hash_file(Path(folder) / fn)] = fn
+            hashes[hash_file(Path(folder) / fn)] = fn
 
-    # 사본 폴더에서 찾은 파일을 추척한다
-    seen = set()
+    return hashes
 
-    # 사본 폴더 자식들을 순회하면서 파일 이름과 해시를 얻는다.
-    for folder, _, files in os.walk(dest):
-        for fn in files:
-            dest_path = Path(folder) / fn
-            dest_hash = hash_file(dest_path)
-            seen.add(dest_hash)
 
-            # 사본에는 있지만 원본에 없는 파일을 찾으면 삭제한다.
-            if dest_hash not in source_hashes:
-                dest_path.remove()
+def synchronize_dirs(reader, filesystem, source_root, dest_root):
+    src_hashes = reader(source_root)
+    dest_hashes = reader(dest_root)
 
-            # 사본에 있는 파일이 원본과 다른 이름이라면
-            # 사본 이름을 올바른 이름(원본 이름)으로 바꾼다
-            elif dest_hash in source_hashes:
-                shutil.move(dest_path, Path(folder) / source_hashes[dest_hash])
+    for sha, filename in src_hashes.items():
+        if sha not in dest_hashes:
+            sourcepath = Path(source_root) / filename
+            destpath = Path(dest_root) / filename
+            filesystem.copy(sourcepath, destpath)
 
-    # 원본에는 있지만 사본에 없는 모든 파일을 사본으로 복사한다
-    for src_hash, fn in source_hashes.items():
-        if src_hash not in seen:
-            shutil.copy(Path(source) / fn, Path(dest) / fn)
+        elif dest_hashes[sha] != filename:
+            olddestpath = Path(dest_root) / dest_hashes[sha]
+            newdestpath = Path(dest_root) / filename
+            filesystem.move(olddestpath, newdestpath)
+
+    for sha, filename in dest_hashes.items():
+        if sha not in src_hashes:
+            filesystem.delete(Path(dest_root) / filename)

@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1422ea84-0e99-4d8a-aa7e-488b22cf1b01" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/cosmicpython_code.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sync_kkj.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_sync_kkj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_di_sync_kkj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sync_kkj.py" beforeDir="false" afterPath="$PROJECT_DIR$/sync_kkj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_sync_kkj.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_sync_kkj.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,39 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="Console" />
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_sync_kkj.py">
+  <component name="RunManager" selected="Python tests.pytest for test_di_sync_kkj.test_when_a_file_has_been_renamed_in_the_source">
+    <configuration name="pytest for test_di_sync_kkj.test_whan_a_file_exists_in_the_source_but_not_the_destination" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="cosmicpython_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_di_sync_kkj.test_whan_a_file_exists_in_the_source_but_not_the_destination&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_di_sync_kkj.test_when_a_file_has_been_renamed_in_the_source" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="cosmicpython_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_di_sync_kkj.test_when_a_file_has_been_renamed_in_the_source&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest for test_sync_kkj.test_when_a_file_exists_in_the_source_but_not_the_destination" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="cosmicpython_code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -112,9 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_sync_kkj.py" />
+        <item itemvalue="Python tests.pytest for test_di_sync_kkj.test_when_a_file_has_been_renamed_in_the_source" />
+        <item itemvalue="Python tests.pytest for test_di_sync_kkj.test_whan_a_file_exists_in_the_source_but_not_the_destination" />
         <item itemvalue="Python tests.pytest for test_sync_kkj.test_when_a_file_has_been_renamed_in_the_source" />
         <item itemvalue="Python tests.pytest for test_sync_kkj.test_when_a_file_exists_in_the_source_but_not_the_destination" />
+        <item itemvalue="Python tests.pytest in test_sync_kkj.py" />
       </list>
     </recent_temporary>
   </component>
@@ -128,16 +157,5 @@
       <updated>1632493320874</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test_sync_kkj.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
