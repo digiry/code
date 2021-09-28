@@ -33,6 +33,7 @@ allocations = Table(
     Column("batch_id", ForeignKey("batches.id")),
 )
 
+
 def start_mappers():
     lines_mapper = mapper(model.OrderLine, order_lines)
     mapper(
@@ -40,7 +41,9 @@ def start_mappers():
         batches,
         properties={
             "_allocations": relationship(
-                lines_mapper, secondary=allocations, collection_class=set,
+                lines_mapper,
+                secondary=allocations,
+                collection_class=set,
             )
         },
     )
