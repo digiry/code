@@ -1,6 +1,5 @@
-from sqlalchemy import Table, MetaData, Column, Integer, String, Date
+from sqlalchemy import Table, MetaData, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import mapper, relationship
-from sqlalchemy.sql.schema import ForeignKey
 
 import model
 
@@ -11,7 +10,7 @@ order_lines = Table(
     metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("sku", String(255)),
-    Column("qty", Integer, nullable=True),
+    Column("qty", Integer, nullable=False),
     Column("orderid", String(255)),
 )
 
