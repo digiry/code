@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   app:
     build:
       context: .
@@ -10,8 +9,11 @@ services:
     environment:
       - DB_HOST=postgres
       - DB_PASSWORD=abc123
+      - API_HOST=app
+      - PYTHONDONTWRITEBYTECODE=1
     volumes:
-      - ./:/code
+      - ./src:/src
+      - ./tests:/tests
     ports:
       - "5005:80"
 

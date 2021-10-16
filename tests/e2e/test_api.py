@@ -1,6 +1,6 @@
 import pytest
 import requests
-import config
+from allocation import config
 import uuid
 
 
