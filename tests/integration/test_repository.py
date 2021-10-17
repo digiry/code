@@ -1,8 +1,9 @@
 from allocation.domain import model
 from allocation.adapters import repository
 
-
+# repository가 batch를 추가해서 DB에 제대로 넣는지 확인하는 테스트
 def test_repository_can_save_a_batch(session):
+    # 준비
     batch = model.Batch("batch1", "RUSTY-SOAPDISH", 100, eta=None)
 
     repo = repository.SqlAlchemyRepository(session)
@@ -53,6 +54,7 @@ def insert_allocation(session, orderline_id, batch_id):
     )
 
 
+# DB에 테스트 데이터를 넣고 repository를 조회할 때 데이터가 제대로 검색되어 반환되는지 확인하는 테스트
 def test_repository_can_retrieve_a_batch_with_allocations(session):
     orderline_id = insert_order_line(session)
     batch1_id = insert_batch(session, "batch1")
